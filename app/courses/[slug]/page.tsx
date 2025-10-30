@@ -62,14 +62,14 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         </div>
       </div>
 
-      <div className="rounded-2xl border border-white/10 bg-black/60 p-6">
+      {/* <div className="rounded-2xl border border-white/10 bg-black/60 p-6">
         <h2 className="text-lg font-medium text-white">Syllabus</h2>
         <ol className="mt-4 list-decimal space-y-2 pl-6 text-zinc-300">
           {syllabus.map((s, i) => (
             <li key={i}>{s}</li>
           ))}
         </ol>
-      </div>
+      </div> */}
 
       {/* Chapters from database */}
       <div className="rounded-2xl border border-white/10 p-6">
