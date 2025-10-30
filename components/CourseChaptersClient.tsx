@@ -74,9 +74,9 @@ export default function CourseChaptersClient({ chapters }: { chapters: ChapterDo
                   />
                 </div>
               )}
-              {ch.html && (
+              {/* {ch.html && (
                 <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: ch.html }} />
-              )}
+              )} */}
             </div>
           )}
         </div>
