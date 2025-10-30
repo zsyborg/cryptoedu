@@ -28,3 +28,22 @@ body {
     linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+h3{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 21pt;
+}
+
+
+ul li{
+  list-style: disc;
+}
+
+ul{
+  list-style: disc;
+}
+
+li{
+  list-style: disc;
+}
