@@ -26,7 +26,7 @@ function Footer() {
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p>© {new Date().getFullYear()} CryptoEdu. All rights reserved.</p>
           <div className="flex gap-5">
-            <Link href="/learn" className="hover:text-white">Learn</Link>
+            {/* <Link href="/learn" className="hover:text-white">Learn</Link> */}
             <Link href="/courses" className="hover:text-white">Courses</Link>
             <Link href="/sign-in" className="hover:text-white">Sign in</Link>
           </div>

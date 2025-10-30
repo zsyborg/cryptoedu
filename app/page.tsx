@@ -16,7 +16,7 @@ export default function Home() {
         </p>
         <div className="mt-10 flex gap-4">
           <Link href="/sign-up" className="rounded-full bg-white px-6 py-3 font-medium text-black shadow-md hover:bg-zinc-200">Start learning</Link>
-          <Link href="/learn" className="rounded-full border border-white/20 px-6 py-3 text-zinc-200 hover:bg-white/10">Browse lessons</Link>
+          <Link href="/courses" className="rounded-full border border-white/20 px-6 py-3 text-zinc-200 hover:bg-white/10">Browse lessons</Link>
         </div>
       </section>
 

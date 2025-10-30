@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -6,13 +6,14 @@ export const metadata: Metadata = {
   description: "Free lessons to understand cryptocurrency and blockchain.",
 };
 
+// Link lessons to the existing course slugs used by /courses/[slug]
 const lessons = [
-  { title: "What is Blockchain?", slug: "what-is-blockchain", level: "Beginner" },
-  { title: "Public vs Private Keys", slug: "keys-basics", level: "Beginner" },
-  { title: "How Bitcoin Works", slug: "how-bitcoin-works", level: "Beginner" },
-  { title: "Ethereum & Gas", slug: "ethereum-gas", level: "Intermediate" },
-  { title: "Smart Contracts 101", slug: "smart-contracts-101", level: "Intermediate" },
-  { title: "Wallet Security", slug: "wallet-security", level: "Intermediate" },
+  { title: "What is Blockchain?", slug: "what-is-blockchain", level: "Beginner", courseSlug: "crypto-101" },
+  { title: "Public vs Private Keys", slug: "keys-basics", level: "Beginner", courseSlug: "crypto-101" },
+  { title: "How Bitcoin Works", slug: "how-bitcoin-works", level: "Beginner", courseSlug: "bitcoin-fundamentals" },
+  { title: "Ethereum & Gas", slug: "ethereum-gas", level: "Intermediate", courseSlug: "ethereum-smart-contracts" },
+  { title: "Smart Contracts 101", slug: "smart-contracts-101", level: "Intermediate", courseSlug: "ethereum-smart-contracts" },
+  { title: "Wallet Security", slug: "wallet-security", level: "Intermediate", courseSlug: "crypto-101" },
 ];
 
 export default function LearnPage() {
@@ -27,7 +28,7 @@ export default function LearnPage() {
         {lessons.map((l) => (
           <Link
             key={l.slug}
-            href={`/courses/${l.slug}`}
+            href={`/courses/${l.courseSlug}`}
             className="rounded-2xl border border-white/10 bg-black/60 p-5 hover:border-white/20 hover:bg-black/70"
           >
             <span className="text-xs text-emerald-400">{l.level}</span>

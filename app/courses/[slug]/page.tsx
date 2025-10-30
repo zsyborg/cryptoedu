@@ -1,26 +1,38 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getDb } from "@/lib/mongodb";
 
-const courses = [
-  { slug: "crypto-101", title: "Crypto 101", summary: "Foundations of blockchain and tokens" },
-  { slug: "bitcoin-fundamentals", title: "Bitcoin Fundamentals", summary: "Economics and mechanics of BTC" },
-  { slug: "ethereum-smart-contracts", title: "Ethereum & Smart Contracts", summary: "How Ethereum works and why it matters" },
-];
+export type CourseDoc = {
+  slug: string;
+  title: string;
+  summary?: string;
+};
 
-export function generateStaticParams() {
-  return courses.map((c) => ({ slug: c.slug }));
+export async function generateStaticParams() {
+  const db = await getDb("web3");
+  const slugs = await db
+    .collection<CourseDoc>("courses")
+    .find({}, { projection: { slug: 1, _id: 0 } })
+    .toArray();
+  return slugs.map((c: any) => ({ slug: c.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const course = courses.find((c) => c.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const db = await getDb("web3");
+  const doc = await db.collection<CourseDoc>("courses").findOne({ slug }, { projection: { _id: 0 } });
   return {
-    title: `${course?.title ?? "Course"} | CryptoEdu`,
-    description: course?.summary ?? "Crypto course",
+    title: `${doc?.title ?? "Course"} | CryptoEdu`,
+    description: doc?.summary ?? "Crypto course",
   };
 }
 
-export default function CoursePage({ params }: { params: { slug: string } }) {
-  const course = courses.find((c) => c.slug === params.slug);
+import CourseChapters from "@/components/CourseChapters";
+
+export default async function CoursePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const db = await getDb("web3");
+  const course = await db.collection<CourseDoc>("courses").findOne({ slug }, { projection: { _id: 0 } });
 
   if (!course) {
     return (
@@ -57,6 +69,12 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
             <li key={i}>{s}</li>
           ))}
         </ol>
+      </div>
+
+      {/* Chapters from database */}
+      <div className="rounded-2xl border border-white/10 p-6">
+        <h2 className="mb-4 text-lg font-medium text-white">Chapters</h2>
+        <CourseChapters courseSlug={slug} />
       </div>
     </div>
   );

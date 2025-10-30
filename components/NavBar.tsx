@@ -24,7 +24,7 @@ export default function NavBar() {
 
         {/* Desktop menu */}
         <div className="hidden items-center gap-6 text-sm text-zinc-300 sm:flex">
-          <Link href="/learn" className="hover:text-white">Learn</Link>
+          {/* <Link href="/learn" className="hover:text-white">Learn</Link> */}
           <Link href="/courses" className="hover:text-white">Courses</Link>
           <Link href="/sign-in" className="hover:text-white">Sign in</Link>
           <Link href="/sign-up" className="rounded-full bg-white px-4 py-2 font-medium text-black hover:bg-zinc-200">Sign up</Link>
